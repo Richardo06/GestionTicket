@@ -7,7 +7,7 @@
   
   <section class="section" >
 
-      <h4 class="card-title mb-3">{{ __('Modification des clients') }}</h4>
+      <h4 class="card-title mb-3">{{ __('Modification de client') }}</h4>
       <div class="col-lg-12" >
           @if (session()->has('success'))
                 <div class="alert alert-success">{{ session()->get('success')}}</div>

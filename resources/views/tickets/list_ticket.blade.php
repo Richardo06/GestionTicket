@@ -6,7 +6,7 @@
   <section class="section" >
 
       <h4 class="card-title mb-3">{{ __('Liste des tickets') }}</h4>
-      <div class="col-lg-12" style="margin-top: 5%;">
+      <div class="col-lg-12" style="margin-top: 5%; width:150rem;">
           <div class="card">
               <div class="card-body">
                   <button class="btn btn-primary btn-rounded mb-3">
@@ -34,14 +34,16 @@
                       </div> -->
                   
                   <div>
+                    @if ($tickets->isEmpty())
                       <div class="alert alert-info" role="alert">
-                          {{ __('Aucun client disponible.') }}
+                          {{ __('Aucun ticket disponible.') }}
                       </div>
-                      
+                      @else
                       <table class="table table-striped table-hover">
                           <thead>
                               <tr>
-                                  <th scope="col">{{__('Dorection/Service')}}</th>
+                                  <!-- <th scope="col">{{__()}}</th> -->
+                                  <th scope="col">{{__('Direction/Service')}}</th>
                                   <th scope="col">{{__('Description')}}</th>
                                   <th scope="col">{{__('Batiment')}}</th>
                                   <th scope="col">{{__('Numéro de Porte')}}</th>
@@ -51,23 +53,28 @@
                               </tr>
                           </thead>
                           <tbody>
-                             
+                             @forelse ($tickets as $ticket)
                               <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
+                                  <!-- <td> {{ $ticket->id }} </td> -->
+                                  <td> {{ $ticket->directionService }}</td>
+                                  <td> {{ $ticket->description }} </td>
+                                  <td> {{ $ticket->batiment}}</td>
+                                  <td> {{ $ticket->numeroPort}} </td>
+                                  <td> {{ $ticket->solutionProposer }} </td>
+                                  <td> {{ $ticket->created_at->format('Y-m-d H:i:s') }} </td>
 
                                   <td>
-                                      <button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button>
+                                      <a href="/ListeTicket/{{ $ticket->id }}/edit"><button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button></a> 
                                       
-                                      <button type="button" class="btn btn-raised btn-rounded btn-raised-danger"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button>
-                                  </td>
+                                      <button type="button" class="btn btn-raised btn-rounded btn-raised-success"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button>                                 
+                                    </td>
                               </tr>
+                                @empty
+
+                            @endforelse        
                           </tbody>
                       </table>
+                      @endif
                       <div class="d-flex justify-content-center">
                       </div>
                       

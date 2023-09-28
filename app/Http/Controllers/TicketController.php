@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\validateFormRequest;
+use App\Http\Requests\ticketRequest;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -11,19 +11,11 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('tickets.index');
-    }
+    
     public function dashbord()
     {
         return view('tickets.dashbord');
-    }
-
-    public function ajouteClient()
-    {
-        return view('ajout_client');
-    }
+    }    
     
     public function AjoutTicket()
     {
@@ -31,7 +23,11 @@ class TicketController extends Controller
     }
     public function ListeTicket()
     {
-        return view('tickets.list_ticket');
+        $tickets =  Ticket::all();
+
+        return view('tickets.list_ticket', [
+            'tickets' => $tickets,
+        ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -40,20 +36,24 @@ class TicketController extends Controller
     {
         return view('ajoute_client');
     }
+    public function store(Ticket $ticket ,ticketRequest $request)
+    {
+        Ticket::create([
+            'directionService' => $request -> directionService,
+            'description' => $request -> description,
+            'batiment' => $request -> batiment,
+            'numeroPort' => $request -> numeroPort,
+            'solutionProposer' => $request -> solutionProposer,
+        ]);
+
+        return redirect()->back()->with('success', 'le ticket a bien été enregistrer');
+
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(validateFormRequest $request) 
-    {
-        // dd($request);
-        $verif = $request;
-        if ($verif) {
-            return view('tickets.dashbord');
-        }else {
-            echo ('$error');
-        }
-    }
+    
 
     /**
      * Display the specified resource.
@@ -66,17 +66,32 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function editTicket($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        return view('tickets.editTicket', [
+            'ticket' => $ticket
+        ]);
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function updateTicket(ticketRequest $request, $id)
     {
-        //
+        $ticket = Ticket::findOrFail($id);
+
+        $ticket->directionService = $request->input('directionService');
+        $ticket->description = $request->input('description');
+        $ticket->batiment = $request->input('batiment');
+        $ticket->numeroPort = $request->input('numeroPort');
+        $ticket->solutionProposer = $request->input('solutionProposer');
+        
+        $ticket->save();
+
+        return redirect()->route('tickets.listTicket')->with('success', 'Modification réussit...');
+
     }
 
     /**

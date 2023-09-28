@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,12 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('tickets.index');
 });
-Route::get('/index', [TicketController::class, 'index'])->name('tickets.index');
-Route::post('/index', [TicketController::class, 'store'])->name('tickets.store');
+Route::get('/index', [LoginController::class, 'index'])->name('tickets.index');
+Route::post('/index', [LoginController::class, 'store'])->name('tickets.store');
 Route::get('/dashbord', [TicketController::class, 'dashbord'])->name('tickets.dashbord');
 Route::get('/ajoutTicket', [TicketController::class, 'AjoutTicket'])->name('tickets.ajoutTicket');
+Route::post('/ajoutTicket', [TicketController::class, 'store'])->name('tickets.store');
 Route::get('/ListeTicket', [TicketController::class, 'ListeTicket'])->name('tickets.listTicket');
-Route::get('/ajout_client', [TicketController::class, 'ajouteClient'])->name('ajouteClient');
+Route::get('/ListeTicket/{id}/edit', [TicketController::class, 'editTicket'])->name('tickets.editTicket');
+Route::put('/ListeTicket/{id}/update', [TicketController::class, 'updateTicket'])->name('tickets.updateTicket');
+
+
+Route::get('/ajout_client', [ClientController::class, 'ajouteClient'])->name('ajouteClient');
 Route::post('/ajout_client', [ClientController::class, 'store'])->name('ajouteClient');
 Route::get('/liste_client', [ClientController::class, 'listeClient'])->name('listeClient');
 Route::get('/liste_Client/{id}/edit', [ClientController::class, 'edit'])->name('EditlisteClient');

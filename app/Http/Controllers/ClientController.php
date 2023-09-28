@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public function ajouteClient()
+    {
+        return view('ajout_client');
+    }
     public function listeClient()
     {
         $clients = client::all();
