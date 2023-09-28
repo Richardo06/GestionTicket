@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\validateFormRequest;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,14 @@ class TicketController extends Controller
     {
         return view('ajout_client');
     }
-    public function listeClient()
+    
+    public function AjoutTicket()
     {
-        return view('list_client');
+        return view('tickets.ajout_ticket');
+    }
+    public function ListeTicket()
+    {
+        return view('tickets.list_ticket');
     }
     /**
      * Show the form for creating a new resource.
@@ -38,9 +44,15 @@ class TicketController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(validateFormRequest $request) 
     {
-        //
+        // dd($request);
+        $verif = $request;
+        if ($verif) {
+            return view('tickets.dashbord');
+        }else {
+            echo ('$error');
+        }
     }
 
     /**

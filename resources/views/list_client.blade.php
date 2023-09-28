@@ -10,127 +10,9 @@
        <div class="col-lg-12" style="margin-top: 5%;">
            <div class="card">
                <div class="card-body">
-                   <button class="btn btn-primary btn-rounded mb-3" wire:click="addClient">
-                       <span>{{__('Ajouter un(e) client(e)')}}</span>
+                   <button class="btn btn-primary btn-rounded mb-3" >
+                       <a href="{{ route('ajouteClient')}}" style="color: white;"><span>{{__('Ajouter un(e) client(e)')}}</span></a>
                    </button>
-                   <form wire:submit.prevent="storeClient" class="mb-3">
-                       <div class="card">
-                           <div class="card-body">
-                               <div class="row col-md-12">
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="name" class="form-label">{{__('Name')}}<span class="text-danger">(*)</span></label>
-                                           <input type="text" class="form-control" id="name" name="name" >
-                                           @error('name')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="phone" class="form-label">{{__('Phone')}}</label>
-                                           <input type="text" class="form-control" id="phone" name="phone" >
-                                           @error('phone')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="row col-md-12">
-
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="address" class="form-label">{{__('Address')}}<span class="text-danger">(*)</span></label>
-                                           <input type="text" class="form-control" id="address" name="address" >
-                                           @error('address')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="postal_code" class="form-label">{{__('Fonction')}}<span class="text-danger">(*)</span></label>
-                                           <input type="text" class="form-control" id="postal_code" name="postal_code" >
-                                           @error('postal_code')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="country_id" class="form-label">{{__('Country')}}<span class="text-danger">(*)</span></label>
-                                           <select class="form-control" id="country_id" name="country_id" >
-                                               <option value="">{{__('Select Country')}}</option>
-                                               <option value=""></option>
-                                           </select>
-                                           @error('country_id')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="row col-md-12">
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="tva" class="form-label">{{__('tva')}}<span class="text-danger">(*)</span></label>
-                                           <input type="text" class="form-control" id="tva" name="tva" >
-                                           @error('tva')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="rcs" class="form-label">{{__('rcs')}}<span class="text-danger">(*)</span></label>
-                                           <input type="text" class="form-control" id="rcs" name="rcs" >
-                                           @error('rcs')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="mb-3">
-                                           <label for="siret" class="form-label">{{__('siret')}}<span class="text-danger">(*)</span></label>
-                                           <input type="text" class="form-control" id="siret" name="siret" >
-                                           @error('siret')
-                                           <div class="alert alert-danger" role="alert">
-                                               {{ $message }}
-                                           </div>
-                                           @enderror
-                                       </div>
-                                   </div>
-                                   
-                               </div>
-                               <div class="col-md-12 mt-3 mb-3">
-                                   <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">
-                                       <span wire:loading wire:target="storeCompany" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                       {{__('Enregister')}}</button>
-                                   <button type="button" class="btn btn-danger" wire:click="cancel"> {{__('Annuler')}}</button>
-                               </div>
-
-                           </div>
-                       </div>
-
-                   </form>
-
-
-                   
-                             
-
                        <!-- Edit  Modal
                        <div  id="editConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="editConfirmationModalLabel" aria-hidden="true">
                            <div class="modal-dialog">
@@ -153,63 +35,75 @@
                        </div> -->
                    
                    <div>
+                    @if ($clients->isEmpty())
                        <div class="alert alert-info" role="alert">
                            {{ __('Aucun client disponible.') }}
                        </div>
-                       
+                       @else
                        <table class="table table-striped table-hover">
                            <thead>
                                <tr>
-                                   <th scope="col">{{__('Name')}}</th>
-                                   <th scope="col">{{__('Country')}}</th>
-                                   <th scope="col">{{__('phone')}}</th>
-                                   <th scope="col">{{__('Siret')}}</th>
-                                   <th scope="col">{{__('Rcs')}}</th>
+                                   <th scope="col">{{__('Nom')}}</th>
+                                   <th scope="col">{{__('Prénom')}}</th>
+                                   <th scope="col">{{__('Email')}}</th>
+                                   <th scope="col">{{__('Numéro')}}</th>
+                                   <th scope="col">{{__('Fonction')}}</th>
                                    <th scope="col">{{__('Date creation')}}</th>
                                    <th scope="col">{{__('Action')}}</th>
                                </tr>
                            </thead>
                            <tbody>
-                              
-                               <tr>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
+                              @forelse ($clients as $client)
+                              <tr>
+                                   <td>{{ $client->nom }}</td>
+                                   <td>{{ $client->prenom }}</td>
+                                   <td>{{ $client->email }}</td>
+                                   <td>{{ $client->numero }}</td>
+                                   <td>{{ $client->fonction }}</td>
+                                   <td>{{ $client->created_at->format('Y-m-d H:i:s') }}</td>
 
                                    <td>
-                                       <button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button>
+                                       <a href="/liste_Client/{{ $client->id }}/edit"><button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button></a>
+                                       <form action="{{ route('DeletelisteClient', $client->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="/liste_Client/{{ $client->id }}/delete"><button type="button" class="btn btn-raised btn-rounded btn-raised-danger"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button></a>
+
+                                        </form>
                                        
-                                       <button type="button" class="btn btn-raised btn-rounded btn-raised-danger"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button>
-                                   </td>
+
+                                    </td>
                                </tr>
+                              @empty
+
+                              @endforelse
+                               
                            </tbody>
                        </table>
+                       @endif
                        <div class="d-flex justify-content-center">
                        </div>
                        
                        <!-- Delete  Modal -->
-                       <div wire:ignore.self class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-                           <div class="modal-dialog" role="document">
-                               <div class="modal-content">
-                                   <div class="modal-header">
-                                       <h5 class="modal-title" id="deleteConfirmationModalLabel">{{__('Confirm Delete')}}</h5>
-                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">&times;</span>
-                                       </button>
-                                   </div>
-                                   <div class="modal-body">
-                                       <p>{{__('Are you sure you want to delete this client?')}}</p>
-                                   </div>
-                                   <div class="modal-footer">
-                                       <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Annuler')}}</button>
-                                       <button type="button" class="btn btn-danger" wire:click="deleteClientConfirmed">{{__('Delete')}}</button>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
+                        <!-- <div  id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteConfirmationModalLabel">{{__('Confirm Delete')}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>{{__('Are you sure you want to delete this client?')}}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Annuler')}}</button>
+                                        <button type="button" class="btn btn-danger" >{{__('Delete')}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
 
                      
                    </div>

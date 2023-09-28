@@ -18,11 +18,14 @@
                     <div class="col-md-12">
                         <div class="p-4">
                             <div class="auth-logo text-center mb-4">
-                                <h1>Log in</h1>
+                            
+                                <img src="{{ asset('assets/images/logo.png') }}"style="width: 100px; height: 100px;" alt="">
                             </div>
                             <h1 class="mb-3 text-18">S'identifier</h1>
-                            <form method="POST" action="">
+                            
+                            <form method="POST" action="{{ route('tickets.store') }}">
 								@csrf
+                                @method('post')
                                 <div class="form-group">
                                     <label for="email">Adresse e-mail</label>
                                     <input id="email" name="email" class="form-control form-control-rounded @error('email') is-invalid @enderror" value="{{ old('email') }}" type="email">
@@ -47,6 +50,9 @@
 
                             <div class="mt-3 text-center">
                                 <a href="#" class="text-muted"><u>Mot de passe oublié ?</u></a>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <a href="#" class="text-muted"><u>s'inscrire !</u></a>
                             </div>
                         </div>
                     </div>

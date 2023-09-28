@@ -45,7 +45,7 @@
     <div class="app-admin-wrap layout-sidebar-large clearfix">
         <div class="main-header">
             <div class="logo">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="">
+                <img src="{{ asset('assets/images/logo.png') }}"  style="width: 70px; height: 70px;"alt="">
             </div>
 
             <div class="menu-toggle">

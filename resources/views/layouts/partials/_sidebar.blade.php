@@ -3,7 +3,7 @@
     <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar data-suppress-scroll-x="true">
         <ul class="navigation-left">
             <li class="nav-item" data-item="dashboard">
-                <a class="nav-item-hold " href="#">
+                <a class="nav-item-hold " href="{{ route('tickets.dashbord')}}">
                     <i class="nav-icon i-Bar-Chart"></i>
                     <span class="nav-text">{{__('Tableau de bord')}}</span>
                 </a>
@@ -18,8 +18,8 @@
             </li>
             <li class="nav-item" data-item="clients">
                 <a class="nav-item-hold " href="#">
-                    <i class="nav-icon i-Windows-2"></i>
-                    <span class="nav-text">{{__('Attribution des Tickets')}}</span>
+                    <i class="nav-icon i-Business-ManWoman "></i>
+                    <span class="nav-text">{{__('Clients')}}</span>
                 </a>
                 <div class="triangle"></div>
             </li>
@@ -47,16 +47,22 @@
 
         <ul class="childNav" data-parent="salaries">
             <li class="nav-item">
-                <a href="">
+                <a href="{{ route('tickets.ajoutTicket')}}">
                     <i class="nav-icon i-Business-ManWoman"></i>
                     <span class="item-name">{{ __(' Ajoute de Ticket') }}</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="">
+                <a href="{{ route('tickets.listTicket')}}">
                     <i class="text-16 i-Calendar mr-8"></i>
                     <span class="item-name">{{ __('Listes des Tickets') }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="">
+                    <i class="text-16 i-Calendar mr-8"></i>
+                    <span class="item-name">{{ __('Attributions des Tickets') }}</span>
                 </a>
             </li>
 
@@ -66,23 +72,23 @@
 
         <ul class="childNav" data-parent="clients">
             <li class="nav-item">
-                <a class="" href="">
+                <a class="" href="{{ route('ajouteClient')}}">
                     <i class="text-16 i-Business-ManWoman mr-8"></i>
-                    <span class="item-name">{{ __('Attribut des Tickets') }}</span>
-                </a>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="" href="">
-                    <i class="text-16 i-Building mr-8"></i>
-                    <span class="item-name">{{ __('Entreprise') }}</span>
+                    <span class="item-name">{{ __('Ajoute clients') }}</span>
                 </a>
             </li>
             <li class="nav-item">
+                <a class="" href="{{ route('listeClient')}}">
+                    <i class="text-16 i-Building mr-8"></i>
+                    <span class="item-name">{{ __('Listes des clients') }}</span>
+                </a>
+            </li>
+            <!-- <li class="nav-item">
                 <a href="">
                     <i class="text-16 i-Chrome mr-8"></i>
                     <span class="item-name">{{ __('Technologie') }}</span>
                 </a>
-            </li> -->
+            </li>  -->
         </ul>
 
         <ul class="childNav" data-parent="facture">
@@ -111,7 +117,7 @@
 
         <ul class="childNav" data-parent="dashboard">
             <li class="nav-item">
-                <a href="">
+                <a href="{{ route('tickets.dashbord')}}">
                     <i class="text-16 i-Bar-Chart-2 mr-8"></i>
                     <span class="item-name">{{ __('Tableau de bord')}}</span>
                 </a>
@@ -133,12 +139,7 @@
                 </a>
             </li>
            
-            <li class="nav-item">
-                <a href="{{ route('tickets.ajouteClient')}}">
-                    <i class="text-16 i-Conference mr-8"></i>
-                    <span class="item-name">{{ __('Utilisateurs') }}</span>
-                </a>
-            </li>
+
             
     </div>
     <div class="sidebar-overlay"></div>
