@@ -11,7 +11,7 @@
 </head>
 
 <body class="text-left">
-    <div class="auth-layout-wrap" style="background-image: url({{ asset('assets/images/slide_2.jpg') }});">
+    <div class="auth-layout-wrap">
         <div class="auth-content">
             <div class="card o-hidden">
                 <div class="row">
@@ -21,9 +21,16 @@
                             
                                 <img src="{{ asset('assets/images/logo.png') }}"style="width: 100px; height: 100px;" alt="">
                             </div>
+                            <div class="card-body"  style="width: 38rem;">
+                                @if (session()->has('success'))
+                                    <div class="alert alert-success">{{ session()->get('success')}}</div>
+                                @endif
+                                @if (session()->has('error'))
+                                    <div class="alert alert-danger">{{ session()->get('error')}}</div>
+                                @endif
                             <h1 class="mb-3 text-18">S'identifier</h1>
                             
-                            <form method="POST" action="{{ route('tickets.store') }}">
+                            <form method="POST" action="{{ route('Auth.store') }}">
 								@csrf
                                 @method('post')
                                 <div class="form-group">
@@ -52,7 +59,7 @@
                                 <a href="#" class="text-muted"><u>Mot de passe oublié ?</u></a>
                             </div>
                             <div class="mt-3 text-center">
-                                <a href="#" class="text-muted"><u>s'inscrire !</u></a>
+                                <a href=" {{ route('Auth.inscription')}} " class="text-muted"><u>s'inscrire !</u></a>
                             </div>
                         </div>
                     </div>

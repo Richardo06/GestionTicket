@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class validateFormRequest extends FormRequest
+class inscriptRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class validateFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
             'nomprenom' => 'required|min:8',
             
@@ -31,10 +31,13 @@ class validateFormRequest extends FormRequest
     public function messages(): array
     {
     return [
-        'email.required' => 'Email  requis',
-        'password.required' => 'Mot de passe  requis',
-        'password.min' => 'Mot de passe doit contenir au moins 8 caractères',
-        'nomprenom' => 'Nom ou Prenom requis',
+        'email.required' => 'L\'email est  requis',
+        'email.unique' => 'L\'email a déja un compte',
+        'password.required' => 'Le mot de passe est requis',
+        'password.min' => 'Le mot de passe doit contenir au moins 8 caractères',
+        'nomprenom' => 'Le nom ou Prenom est requis',
+        'nomprenom.min' => 'Le nom ou Prénom doit contenir au moins 8 caractères',
+
         
     ];
     }

@@ -1,23 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\validateFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    
     public function index()
     {
-        return view('tickets.index');
+        return view('Auth.index');
     }
-    public function store(validateFormRequest $request) 
+    public function store(Request $request) 
     {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
         // dd($request);
-        $verif = $request;
-        if ($verif) {
-            return view('tickets.dashbord');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('dashbord');
         }else {
-            echo ('$error');
+             return redirect()->back()->with('error', ' Les informations que vous avez indiquer est incorrect!!!');
         }
     }
 }

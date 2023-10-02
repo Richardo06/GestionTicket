@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TicketController;
@@ -17,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('tickets.index');
+    return view('Auth.index');
 });
-Route::get('/index', [LoginController::class, 'index'])->name('tickets.index');
-Route::post('/index', [LoginController::class, 'store'])->name('tickets.store');
+Route::get('/index', [LoginController::class, 'index'])->name('Auth.index');
+Route::post('/index', [LoginController::class, 'store'])->name('Auth.store');
+
+Route::get('/inscription', [AuthController::class, 'inscription'])->name('Auth.inscription');
+Route::post('/inscription', [AuthController::class, 'store'])->name('Auth.inscription');
 Route::get('/dashbord', [TicketController::class, 'dashbord'])->name('tickets.dashbord');
 Route::get('/ajoutTicket', [TicketController::class, 'AjoutTicket'])->name('tickets.ajoutTicket');
 Route::post('/ajoutTicket', [TicketController::class, 'store'])->name('tickets.store');
