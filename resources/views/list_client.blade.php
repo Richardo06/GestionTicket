@@ -35,11 +35,15 @@
                        </div> -->
                    
                    <div>
+                   @if (session()->has('success'))
+                            <div class="alert alert-success">{{ session()->get('success')}}</div>
+                        @endif
                     @if ($clients->isEmpty())
                        <div class="alert alert-info" role="alert">
                            {{ __('Aucun client disponible.') }}
                        </div>
                        @else
+                       
                        <table class="table table-striped table-hover">
                            <thead>
                                <tr>
@@ -64,10 +68,10 @@
 
                                    <td>
                                        <a href="/liste_Client/{{ $client->id }}/edit"><button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button></a>
-                                       <form action="{{ route('DeletelisteClient', $client->id) }}">
+                                       <form action="{{ route('DeletelisteClient', $client->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="/liste_Client/{{ $client->id }}/delete"><button type="button" class="btn btn-raised btn-rounded btn-raised-danger"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button></a>
+                                       <button type="submit" class="btn btn-raised btn-rounded btn-raised-danger"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button>
 
                                         </form>
                                        

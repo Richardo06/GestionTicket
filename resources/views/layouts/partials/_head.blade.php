@@ -152,7 +152,7 @@
                                 <i class="i-Lock-User mr-1"></i> 
                             </div>
                             <a class="dropdown-item">{{ __('Paramètres du compte')}}</a>
-                            <a  class="dropdown-item" href="">{{ __('Se déconnecter')}}</a>
+                            <a  class="dropdown-item" href=" {{ route('deconnection')}} ">{{ __('Se déconnecter')}}</a>
                             <form id="logout-form" action="}" method="POST" class="d-none">
                                 @csrf
                             </form>

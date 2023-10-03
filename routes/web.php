@@ -26,6 +26,7 @@ Route::post('/index', [LoginController::class, 'store'])->name('Auth.store');
 Route::get('/inscription', [AuthController::class, 'inscription'])->name('Auth.inscription');
 Route::post('/inscription', [AuthController::class, 'store'])->name('Auth.inscription');
 Route::get('/dashbord', [TicketController::class, 'dashbord'])->name('tickets.dashbord');
+Route::get('/deconnection', [TicketController::class, 'deconnection'])->name('deconnection');
 Route::get('/ajoutTicket', [TicketController::class, 'AjoutTicket'])->name('tickets.ajoutTicket');
 Route::post('/ajoutTicket', [TicketController::class, 'store'])->name('tickets.store');
 Route::get('/ListeTicket', [TicketController::class, 'ListeTicket'])->name('tickets.listTicket');
