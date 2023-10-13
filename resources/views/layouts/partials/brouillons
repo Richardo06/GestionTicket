@@ -1,0 +1,174 @@
+<!-- head --!>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+
+     -Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('assets/css/dashboard.css')}}" rel="stylesheet">
+  </head> 
+
+ 
+  <!--nav-->
+
+  
+
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <img src="cinqueterre.jpg" class="rounded" alt="Accuiel">
+          <input class="form-control form-control-dark w-50 h-20" type="text" placeholder="Search" aria-label="Search">
+      
+          <div class="btn-group dropleft" style="padding-right: 30px;">
+              <button type="button" class="btn btn-outline-secondary dropdown-toggle" style="color: white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Mon Compte
+              </button>
+      <div class="dropdown-menu dropleft">
+        <a class="dropdown-item" href="#">Mon Compte</a>
+        <a class="dropdown-item" href="#">Ajoute CLient</a>
+        <a class="dropdown-item" href="#">Liste Client </a>
+        <a class="dropdown-item" href="#"> here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">log out</a>
+      </div>
+    </div>
+    
+        </nav>
+        
+    
+  <!-- sidebar     -->
+  
+  <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <span data-feather="home"></span>
+            Dashboard <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="file"></span>
+            Orders
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="shopping-cart"></span>
+            Products
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="users"></span>
+            Customers
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="bar-chart-2"></span>
+            Reports
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="layers"></span>
+            Integrations
+          </a>
+        </li>
+      </ul>
+
+      
+      <ul class="nav flex-column mb-2">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="file-text"></span>
+            Current month
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="file-text"></span>
+            Last quarter
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="file-text"></span>
+            Social engagement
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span data-feather="file-text"></span>
+            Year-end sale
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--main-->
+  <!doctype html>
+<html lang="en">
+ @include('layouts.partials._head')
+
+  <body>
+    @include('layouts.partials._navigation')
+
+    <div class="container-fluid">
+      <div class="row">
+        @include('layouts.partials._sidebar')
+
+        @yield('content')
+      </div>
+    </div>
+
+    @include('layouts.partials._scripts')
+  </body>
+</html>
+ 
+<!-- logi -->
+@include('layouts.partials._head')
+<div>
+<main class="form-signin w-100 m-auto">
+  <div class="form-group">
+  <form>
+    <h1 class="h3 mb-3 fw-normal">Se connecter</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="form-check text-start my-3">
+      <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Remember me
+      </label>
+    </div>
+    
+    <button class="btn btn-primary w-100 py-2" type="submit">Connexion</button>
+    <div class="d-flex" style="margin-left: 14rem;"> 
+      <a href="">inscription</a>
+    </div>
+    <p class="mt-5 mb-3 text-body-secondary">&copy; 2023–2024</p>
+    
+  </form>
+  </div>
+</main>
+</div>
