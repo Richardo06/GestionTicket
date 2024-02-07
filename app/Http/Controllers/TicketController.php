@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Pusher\Pusher;
 
 class TicketController extends Controller
 {
@@ -48,6 +49,20 @@ class TicketController extends Controller
             'solutionProposer' => $request -> solutionProposer,
         ]);
 
+        Auth::user()->id;
+        // $pusher();
+        $options = array(
+            'cluster' => 'ap2',
+            'useTLS' => true
+        );
+
+        // $pusher = new Pusher(
+        //     env('PUSHER_APP_KEY'),
+        //     env('PUSHER_APP_SECRET'),
+        //     env('PUSHER_APP_ID'),
+        // );
+
+        // $pusher->trigger('my-channel', 'my-event');
         return redirect()->back()->with('success', 'le ticket a bien été enregistrer');
 
     }

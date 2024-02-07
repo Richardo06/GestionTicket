@@ -80,12 +80,28 @@
                                        </div>
                                </div>
                                <div class="col-md-12 mt-3 mb-3">
-                                   <button type="submit" class="btn btn-primary">
+                                   <button type="submit" class="btn btn-primary save_btn">
                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                        {{__('Enregister')}}</button>
                                    <a href=" {{ route('tickets.listTicket')}}"><button type="button" class="btn btn-danger" > {{__('Annuler')}}</button></a>
                                </div>
                    </form>
+
+    <script>
+          $(document).ready(function() {
+            var pusher = new Pusher('0b5b0f6cf3671e5662c4', {
+                 cluster: 'ap2'
+            });     
+
+            var channel = pusher.subscribe('my-channel');
+                channel.bind('my-event', function(data) {
+                alert(JSON.stringify(data));
+            });
+                 $('.save_btn').on('click', function(e) {
+                    alert(1);
+               });
+          });
+     </script>
 
 
                    

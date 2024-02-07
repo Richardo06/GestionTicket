@@ -29,12 +29,14 @@
     <script src="{{ asset('assets/js/es5/dashboard.v1.script.min.js') }}"></script>
     <script src="{{ asset('assets/js/es5/script.min.js') }}"></script>
     <script src="{{ asset('assets/js/es5/sidebar.large.script.min.js') }}"></script>
-
-
-
+    <script src="{{ asset('assets/js/notification.js') }}"></script>
 </head>
 
 <body class="text-left">
+    <input type="hidden" id="urls_get_notif" value="{{ asset('nombre-notofication.html') }}">
+    <input type="hidden" id="urls_base" value="{{ asset('assets') }}">
+    <input type="hidden" id="stock_nbr_notif" value="0">
+    <div id="player"></div>
     <!-- Pre Loader Strat  -->
     <div class='loadscreen' id="preloader">
 
@@ -77,7 +79,7 @@
                 <!-- Notificaiton -->
                 <div class="dropdown">
                     <div class="badge-top-container" id="dropdownNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="badge badge-primary">3</span>
+                        <span class="badge badge-danger" id="nombre-notif-span">0</span>
                         <i class="i-Bell text-muted header-icon"></i>
                     </div>
                     <!-- Notification dropdown -->

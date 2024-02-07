@@ -40,3 +40,9 @@ Route::get('/liste_client', [ClientController::class, 'listeClient'])->name('lis
 Route::get('/liste_Client/{id}/edit', [ClientController::class, 'edit'])->name('EditlisteClient');
 Route::put('/liste_Client/{id}/update', [ClientController::class, 'update'])->name('UpdatelisteClient');
 Route::delete('/liste_Client/{id}/delete', [ClientController::class, 'delete'])->name('DeletelisteClient');
+
+/*
+* recuperation nombre de notification
+*/
+
+Route::get('/nombre-notofication.html', [ClientController::class, 'getNotif'])->name('getnotification');

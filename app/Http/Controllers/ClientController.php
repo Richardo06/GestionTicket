@@ -6,6 +6,7 @@ use App\Http\Requests\ClientRequest;
 use App\Models\client;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ClientController extends Controller
 {
@@ -70,5 +71,11 @@ class ClientController extends Controller
         $client->delete();
 
         return redirect()->route('listeClient')->with('success', 'Suppression réussie...');
+    }
+
+    public function getNotif(){
+        $nbr = Client::getNbrNotif();
+
+        return json_encode( ["nbr"=>$nbr] ) ;
     }
 }
