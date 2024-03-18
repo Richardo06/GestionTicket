@@ -26,7 +26,7 @@ class TicketController extends Controller
     }
     public function ListeTicket()
     {
-        $tickets =  Ticket::all();
+        $tickets = Ticket::paginate(10);
 
         return view('tickets.list_ticket', [
             'tickets' => $tickets,
@@ -47,7 +47,11 @@ class TicketController extends Controller
             'batiment' => $request -> batiment,
             'numeroPort' => $request -> numeroPort,
             'solutionProposer' => $request -> solutionProposer,
+            'added_by' => Auth::user()->name, // Récupérer l'ID de l'utilisateur connecté
         ]);
+
+        return redirect()->route('tickets.ajoutTicket')->with('success', 'le ticket a bien été enregistrer');
+
 
         Auth::user()->id;
         // $pusher();
@@ -56,14 +60,13 @@ class TicketController extends Controller
             'useTLS' => true
         );
 
-        // $pusher = new Pusher(
-        //     env('PUSHER_APP_KEY'),
-        //     env('PUSHER_APP_SECRET'),
-        //     env('PUSHER_APP_ID'),
-        // );
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+        );
 
-        // $pusher->trigger('my-channel', 'my-event');
-        return redirect()->back()->with('success', 'le ticket a bien été enregistrer');
+        $pusher->trigger('my-channel', 'my-event');
 
     }
 
@@ -75,9 +78,19 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function consult_ticket($id)
     {
-        //
+        $ticket = Ticket::findOrFail($id);
+
+        // Vérifier si le ticket est dans l'état "Nouveau"
+        if ($ticket->etat === 'Nouveau') {
+            $ticket->etat = 'En cours';
+            // $ticket->consulted_by = Auth::id();
+            $ticket->consulted_by = Auth::user()->name;
+            $ticket->save();
+        }
+
+        return view('tickets.consult_ticket', compact('ticket'));
     }
 
     /**
@@ -85,11 +98,18 @@ class TicketController extends Controller
      */
     public function editTicket($id)
     {
-        $ticket = Ticket::find($id);
+        $ticket = Ticket::findOrFail($id);
         return view('tickets.editTicket', [
             'ticket' => $ticket
         ]);
         
+    }
+    public function consult($id)
+    {
+        $ticket = Ticket::findOrFail($id);
+        $ticket->etat='en cours';
+        $ticket->save();
+        return redirect('tickets/'.$id.'/consult_ticket');
     }
 
     /**
@@ -119,4 +139,25 @@ class TicketController extends Controller
         Auth()->logout();
         return redirect('/index');
     }
+    // public function traiter_ticket($id)
+    // {
+    //     $ticket = Ticket::findOrFail($id);
+    //     return view('route('tickets.traiter_ticket', compact()));
+    // }
+    public function traiter_ticket($id)
+{
+    $ticket = Ticket::findOrFail($id);
+
+    // Vérifiez si le ticket est dans l'état "En cours"
+    if ($ticket->etat === 'En cours') {
+        // Effectuez les actions de traitement du ticket ici
+        // Par exemple, mettez à jour d'autres attributs du ticket ou effectuez des actions spécifiques
+
+        // Par exemple, vous pouvez définir l'état du ticket comme "Terminé"
+        $ticket->etat = 'Terminé';
+        $ticket->save();
+    }
+
+    return view('tickets.traiter_ticket', compact('ticket'));
+}
 }

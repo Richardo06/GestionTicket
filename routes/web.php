@@ -29,6 +29,13 @@ Route::get('/dashbord', [TicketController::class, 'dashbord'])->name('tickets.da
 Route::get('/deconnection', [TicketController::class, 'deconnection'])->name('deconnection');
 Route::get('/ajoutTicket', [TicketController::class, 'AjoutTicket'])->name('tickets.ajoutTicket');
 Route::post('/ajoutTicket', [TicketController::class, 'store'])->name('tickets.store');
+// Route::get('/ListeTicket/{id}/consult', [TicketController::class, 'consult'])->name('tickets.consult');
+
+Route::get('/tickets/{id}/consult', [TicketController::class, 'consult_ticket'])->name('tickets.consult_ticket');
+// Route::post('/tickets/{id}/update-status', 'TicketController@updateStatus')->name('tickets.updateStatus');
+Route::get('/tickets/{id}/traiter', [TicketController::class, 'traiter_ticket'])->name('tickets.traiter_ticket');
+
+
 Route::get('/ListeTicket', [TicketController::class, 'ListeTicket'])->name('tickets.listTicket');
 Route::get('/ListeTicket/{id}/edit', [TicketController::class, 'editTicket'])->name('tickets.editTicket');
 Route::put('/ListeTicket/{id}/update', [TicketController::class, 'updateTicket'])->name('tickets.updateTicket');

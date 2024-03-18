@@ -50,7 +50,7 @@ class ClientController extends Controller
     }
     public function store(client $client,ClientRequest $request)
     {
-        
+        dd($request->all());
         client::create([
             'nom' => $request -> nom,
             'prenom' => $request -> prenom,
@@ -58,9 +58,23 @@ class ClientController extends Controller
             'numero' => $request -> numero,
             'fonction' => $request -> fonction,
         ]);
-
         return redirect()->back()->with('success', 'le client a bien été enregistrer');
-        
+
+        Auth::user()->id;
+        // $pusher();
+        $options = array(
+            'cluster' => 'ap2',
+            'useTLS' => true
+        );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+        );
+
+        $pusher->trigger('my-channel', 'my-event');
+ 
     }
 
     public function delete($id)

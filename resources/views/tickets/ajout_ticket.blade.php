@@ -31,7 +31,7 @@
                                    </div>
                                    <div class="col-md-4">
                                        <div class="mb-3">
-                                           <label for="description" class="form-label">{{__('Description')}}</label>
+                                           <label for="description" class="form-label">{{__('Description des Pannes')}}</label>
                                            <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
                                            @error('description')
                                            <div class="alert alert-danger" role="alert">

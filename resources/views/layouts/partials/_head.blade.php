@@ -63,7 +63,7 @@
                 <!-- Full screen toggle -->
                 <i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen></i>
                 <!-- Grid menu Dropdown -->
-                <div class="dropdown">
+                <!-- <div class="dropdown">
                     <i class="i-Safe-Box text-muted header-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false"></i>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <div class="menu-icon-grid">
@@ -75,7 +75,7 @@
                             <a href="#"><i class="i-Ambulance"></i> Support</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Notificaiton -->
                 <div class="dropdown">
                     <div class="badge-top-container" id="dropdownNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -151,7 +151,7 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                             <div class="dropdown-header">
-                                <i class="i-Lock-User mr-1"></i> 
+                                <i class="i-Lock-User mr-1"> . {{ Auth::user()->name }}</i> 
                             </div>
                             <a class="dropdown-item">{{ __('Paramètres du compte')}}</a>
                             <a  class="dropdown-item" href=" {{ route('deconnection')}} ">{{ __('Se déconnecter')}}</a>
