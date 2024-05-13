@@ -23,8 +23,8 @@ class inscriptRequest extends FormRequest
     {
         return [
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-            'nomprenom' => 'required|min:8',
+            'password' => 'required',
+            'nomprenom' => 'required',
             
         ];
     }
@@ -34,9 +34,7 @@ class inscriptRequest extends FormRequest
         'email.required' => 'L\'email est  requis',
         'email.unique' => 'L\'email a déja un compte',
         'password.required' => 'Le mot de passe est requis',
-        'password.min' => 'Le mot de passe doit contenir au moins 8 caractères',
         'nomprenom' => 'Le nom ou Prenom est requis',
-        'nomprenom.min' => 'Le nom ou Prénom doit contenir au moins 8 caractères',
 
         
     ];

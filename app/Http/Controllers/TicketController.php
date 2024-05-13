@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ticketRequest;
 use App\Models\Ticket;
+use App\Models\client;
+use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Pusher\Pusher;
+use Illuminate\Support\Facades\DB;
+
 
 class TicketController extends Controller
 {
@@ -17,8 +21,54 @@ class TicketController extends Controller
     
     public function dashbord()
     {
-        return view('tickets.dashbord');
-    }    
+        $nombreTickets = Ticket::count();
+        $nombreClients = client::count();
+        $nombreUsers = User::count();
+
+        $lastFiveTickets = Ticket::orderBy('created_at', 'desc')->take(5)->get();
+
+        $nombreTicketsTermines = Ticket::where('etat', 'Terminé')->count();
+        $nombreTicketsEnCours = Ticket::where('etat', 'En cours')->count();
+
+            // Collecter les données sur le nombre de tickets créés chaque mois
+    $monthlyTicketCounts = Ticket::select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+    ->groupBy(DB::raw('MONTH(created_at)'))
+    ->get();
+
+// Créer des tableaux pour stocker les mois et les nombres de tickets
+    $months = [];
+    $ticketCounts = [];
+
+// Parcourir les données et les stocker dans les tableaux
+    foreach ($monthlyTicketCounts as $monthlyTicketCount) {
+        $months[] = \DateTime::createFromFormat('!m', $monthlyTicketCount->month)->format('F');
+        $ticketCounts[] = $monthlyTicketCount->count;
+    }
+
+
+        return view('tickets.dashbord', compact('nombreTickets', 'nombreClients', 'nombreUsers', 'lastFiveTickets', 'nombreTicketsTermines', 'nombreTicketsEnCours', 'months', 'ticketCounts'));
+    } 
+
+    public function usersettings()
+    {
+        return view('usersettings');
+    }
+    
+    public function useredit()
+    {
+        return view('useredit');
+    }   
+
+    public function userupdate(Request $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+
+        return redirect()->route('usersettings')->with('success', 'Informations mises à jour avec succès.');
+    }
+
     
     public function AjoutTicket()
     {
@@ -26,12 +76,22 @@ class TicketController extends Controller
     }
     public function ListeTicket()
     {
-        $tickets = Ticket::paginate(10);
-
+        $tickets = Ticket::orderByDesc('created_at')->get();
+    
         return view('tickets.list_ticket', [
             'tickets' => $tickets,
         ]);
     }
+    public function ticketsParMois()
+    {
+        $ticketsParMois = Ticket::selectRaw("DATE_FORMAT(created_at, '%M') as mois, count(*) as total")
+            ->groupBy('mois')
+            ->orderByRaw('MONTH(created_at)')
+            ->get();
+    
+        return view('dashbord', compact('ticketsParMois'));
+    }    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -47,10 +107,13 @@ class TicketController extends Controller
             'batiment' => $request -> batiment,
             'numeroPort' => $request -> numeroPort,
             'solutionProposer' => $request -> solutionProposer,
-            'added_by' => Auth::user()->name, // Récupérer l'ID de l'utilisateur connecté
+            'added_by' => Auth::user()->name,
         ]);
 
-        return redirect()->route('tickets.ajoutTicket')->with('success', 'le ticket a bien été enregistrer');
+        session()->put('new_ticket_added', true);
+
+        return redirect()->route('tickets.listTicket')->with('success', 'le ticket a bien été enregistrer...');
+
 
 
         Auth::user()->id;

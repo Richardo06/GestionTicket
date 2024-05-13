@@ -11,30 +11,9 @@
            <div class="card">
                <div class="card-body">
                    <button class="btn btn-primary btn-rounded mb-3" >
-                       <a href="{{ route('ajouteClient')}}" style="color: white;"><span>{{__('Ajouter un(e) client(e)')}}</span></a>
+                       <a href="{{ route('client.ajouteClient')}}" style="color: white;"><span>{{__('Ajouter un(e) client(e)')}}</span></a>
                    </button>
-                       <!-- Edit  Modal
-                       <div  id="editConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="editConfirmationModalLabel" aria-hidden="true">
-                           <div class="modal-dialog">
-                               <div class="modal-content">
-                                   <div class="modal-header">
-                                       <h5 class="modal-title" id="editConfirmationModalLabel">{{__('Confirmation')}}</h5>
-                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">&times;</span>
-                                       </button>
-                                   </div>
-                                   <div class="modal-body">
-                                       <p>{{__('Est vous sur de vouloir effectuez ce modification?')}}</p>
-                                   </div>
-                                   <div class="modal-footer">
-                                       <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Annuler')}}</button>
-                                       <button type="submit" class="btn btn-primary" >{{__('Confirm')}}</button>
-                                   </div>
-                               </div>
-                           </div>
-                       </div> -->
-                   
-                   <div>
+                <div>
                    @if (session()->has('success'))
                             <div class="alert alert-success">{{ session()->get('success')}}</div>
                         @endif
@@ -67,16 +46,21 @@
                                    <td>{{ $client->created_at->format('Y-m-d H:i:s') }}</td>
 
                                    <td>
-                                       <a href="/liste_Client/{{ $client->id }}/edit"><button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button></a>
-                                       <form action="{{ route('DeletelisteClient', $client->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                       <button type="submit" class="btn btn-raised btn-rounded btn-raised-danger"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button>
-
+                                    <div class="d-flex">
+                                        <a href="/liste_Client/{{ $client->id }}/edit">
+                                            <button type="button" class="btn btn-raised btn-rounded btn-raised-primary">
+                                                <i class="nav-icon i-Pen-2 font-weight-bold"></i>
+                                            </button>
+                                        </a>
+                                        <form action="{{ route('DeletelisteClient', $client->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-raised btn-rounded btn-raised-danger" data-toggle="modal" data-target="#deleteConfirmationModal">
+                                                <i class="nav-icon i-Close-Window font-weight-bold"></i>
+                                            </button>
                                         </form>
-                                       
-
-                                    </td>
+                                    </div>
+                                </td>
                                </tr>
                               @empty
 

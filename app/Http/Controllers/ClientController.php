@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
+use App\Models\User;
+use App\Models\Ticket;
 use App\Models\client;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Pusher\Pusher;
 
 class ClientController extends Controller
 {
@@ -46,36 +50,23 @@ class ClientController extends Controller
     // Enregistrez les modifications dans la base de données
     $client->save();
 
-    return redirect()->route('listeClient')->with('success', 'Modification réussie...');
+    return redirect()->route('client.listeClient')->with('success', 'Modification réussie...');
     }
-    public function store(client $client,ClientRequest $request)
+    public function store(Client $client, ClientRequest $request)
     {
-        dd($request->all());
-        client::create([
-            'nom' => $request -> nom,
-            'prenom' => $request -> prenom,
-            'email' => $request -> email,
-            'numero' => $request -> numero,
-            'fonction' => $request -> fonction,
+        Client::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'numero' => $request->numero,
+            'fonction' => $request->fonction,
         ]);
-        return redirect()->back()->with('success', 'le client a bien été enregistrer');
-
-        Auth::user()->id;
-        // $pusher();
-        $options = array(
-            'cluster' => 'ap2',
-            'useTLS' => true
-        );
-
-        $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-        );
-
-        $pusher->trigger('my-channel', 'my-event');
- 
+    
+        session()->put('new_client_added', true);
+        
+        return redirect()->route('client.listeClient')->with('success', 'Ajout réussi...');
     }
+    
 
     public function delete($id)
     {
@@ -84,7 +75,7 @@ class ClientController extends Controller
     // Supprimez le client de la base de données
         $client->delete();
 
-        return redirect()->route('listeClient')->with('success', 'Suppression réussie...');
+        return redirect()->route('client.listeClient')->with('success', 'Suppression réussie...');
     }
 
     public function getNotif(){

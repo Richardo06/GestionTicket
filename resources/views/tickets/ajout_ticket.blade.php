@@ -21,8 +21,65 @@
                                    <div class="col-md-4">
                                        <div class="mb-3">
                                            <label for="directionService" class="form-label">{{__('Direction/Service')}}<span class="text-danger">(*)</span></label>
-                                           <input type="text" class="form-control" id="directionService" name="directionService" value="{{ old('directionService') }}" >
-                                           @error('directionService')
+                                           <select class="form-control" id="directionService" name="directionService">
+                                        <option value="" disabled selected>Choisissez une direction/service</option>
+                                        <option value="Ministre"
+                                            {{ old('directionService') == 'Ministre' ? 'selected' : '' }}>Ministre
+                                        </option>
+                                        <option value="CAB" {{ old('directionService') == 'CAB' ? 'selected' : '' }}>CAB
+                                        </option>
+                                        <option value="PRMP" {{ old('directionService') == 'PRMP' ? 'selected' : '' }}>
+                                            PRMP</option>
+                                        <option value="UCP" {{ old('directionService') == 'UCP' ? 'selected' : '' }}>UCP
+                                        </option>
+                                        <option value="UFP" {{ old('directionService') == 'UFP' ? 'selected' : '' }}>UFP
+                                        </option>
+                                        <option value="UCOM" {{ old('directionService') == 'UCOM' ? 'selected' : '' }}>
+                                            UCOM</option>
+                                        <option value="USOR" {{ old('directionService') == 'USOR' ? 'selected' : '' }}>
+                                            USOR</option>
+                                        <option value="UCA" {{ old('directionService') == 'UCA' ? 'selected' : '' }}>UCA
+                                        </option>
+                                        <option value="SG" {{ old('directionService') == 'SG' ? 'selected' : '' }}>SG
+                                        </option>
+                                        <option value="DGES" {{ old('directionService') == 'DGES' ? 'selected' : '' }}>
+                                            DGES</option>
+                                        <option value="DGP" {{ old('directionService') == 'DGP' ? 'selected' : '' }}>DGP
+                                        </option>
+                                        <option value="UCG" {{ old('directionService') == 'UCG' ? 'selected' : '' }}>UCG
+                                        </option>
+                                        <option value="DAAF" {{ old('directionService') == 'DAAF' ? 'selected' : '' }}>
+                                            DAAF</option>
+                                        <option value="DRH" {{ old('directionService') == 'DRH' ? 'selected' : '' }}>DRH
+                                        </option>
+                                        <option value="DPE" {{ old('directionService') == 'DPE' ? 'selected' : '' }}>DPE
+                                        </option>
+                                        <option value="DEMC" {{ old('directionService') == 'DEMC' ? 'selected' : '' }}>
+                                            DEMC</option>
+                                        <option value="DSI" {{ old('directionService') == 'DSI' ? 'selected' : '' }}>DSI
+                                        </option>
+                                        <option value="DPFI" {{ old('directionService') == 'DPFI' ? 'selected' : '' }}>
+                                            DPFI</option>
+                                        <option value="DAJ" {{ old('directionService') == 'DAJ' ? 'selected' : '' }}>DAJ
+                                        </option>
+                                        <option value="DEO" {{ old('directionService') == 'DEO' ? 'selected' : '' }}>DEO
+                                        </option>
+                                        <option value="DES" {{ old('directionService') == 'DES' ? 'selected' : '' }}>DES
+                                        </option>
+                                        <option value="DENF" {{ old('directionService') == 'DENF' ? 'selected' : '' }}>
+                                            DENF</option>
+                                        <option value="DExamC"
+                                            {{ old('directionService') == 'DExamC' ? 'selected' : '' }}>DExamC</option>
+                                        <option value="DCRP" {{ old('directionService') == 'DCRP' ? 'selected' : '' }}>
+                                            DCRP</option>
+                                        <option value="DESIP"
+                                            {{ old('directionService') == 'DESIP' ? 'selected' : '' }}>DESIP</option>
+                                        <option value="DFP" {{ old('directionService') == 'DFP' ? 'selected' : '' }}>DFP
+                                        </option>
+                                        <option value="DDIS" {{ old('directionService') == 'DDIS' ? 'selected' : '' }}>
+                                            DDIS</option>
+                                    </select>                                           
+                                            @error('directionService')
                                            <div class="alert alert-danger" role="alert">
                                                {{ $message }}
                                            </div>
@@ -46,8 +103,13 @@
                                    <div class="col-md-4">
                                         <div class="mb-3">
                                            <label for="batiment" class="form-label">{{__('Batiment')}}</label>
-                                           <input type="text" class="form-control" id="batiment" name="batiment" value="{{ old('batiment') }}">
-                                           @error('batiment')
+                                           <select class="form-control" id="batiment" name="batiment">
+                                        <option value="" disabled selected>Choisissez un bâtiment</option>
+                                        <option value="A" {{ old('batiment') == 'A' ? 'selected' : '' }}>A</option>
+                                        <option value="B" {{ old('batiment') == 'B' ? 'selected' : '' }}>B</option>
+                                        <option value="C" {{ old('batiment') == 'C' ? 'selected' : '' }}>C</option>
+                                    </select>
+                                            @error('batiment')
                                            <div class="alert alert-danger" role="alert">
                                                {{ $message }}
                                            </div>
@@ -103,55 +165,6 @@
           });
      </script>
 
-
-                   
-                             
-
-                       <!-- Edit  Modal
-                       <div  id="editConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="editConfirmationModalLabel" aria-hidden="true">
-                           <div class="modal-dialog">
-                               <div class="modal-content">
-                                   <div class="modal-header">
-                                       <h5 class="modal-title" id="editConfirmationModalLabel">{{__('Confirmation')}}</h5>
-                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">&times;</span>
-                                       </button>
-                                   </div>
-                                   <div class="modal-body">
-                                       <p>{{__('Est vous sur de vouloir effectuez ce modification?')}}</p>
-                                   </div>
-                                   <div class="modal-footer">
-                                       <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Annuler')}}</button>
-                                       <button type="submit" class="btn btn-primary" >{{__('Confirm')}}</button>
-                                   </div>
-                               </div>
-                           </div>
-                       </div> -->
-                   
-                   
-                       
-                       <!-- Delete  Modal -->
-                       <!-- <div id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-                           <div class="modal-dialog" role="document">
-                               <div class="modal-content">
-                                   <div class="modal-header">
-                                       <h5 class="modal-title" id="deleteConfirmationModalLabel">{{__('Confirm Delete')}}</h5>
-                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">&times;</span>
-                                       </button>
-                                   </div>
-                                   <div class="modal-body">
-                                       <p>{{__('Are you sure you want to delete this client?')}}</p>
-                                   </div>
-                                   <div class="modal-footer">
-                                       <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Annuler')}}</button>
-                                       <button type="button" class="btn btn-danger" >{{__('Delete')}}</button>
-                                   </div>
-                               </div>
-                           </div>
-                       </div> -->
-
-                     
                    </div>
                    <!-- End Default Table Example -->
                </div>

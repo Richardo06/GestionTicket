@@ -6,8 +6,8 @@
 <div  style="margin-left: 12%;padding-top: 12%;;">
  <section class="section"  >
 
-       <h4 class="card-title mb-6">{{ __('Consultation de ticket N°')  . auth()->id() }}</h4>
-           <div class="col-lg-12" >
+ <h4 class="card-title mb-6">{{ __('Consultation de ticket N°')  . $ticket->id }}</h4>
+            <div class="col-lg-12" >
               <div class="card">
                  <div class="card-body"  >
                      <table class="table table-striped md-5">

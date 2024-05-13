@@ -14,7 +14,7 @@
                      <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                            <div class="btn-group pull-right">
-                              <a href="{{route('tickets.traiter_ticket', ['id' => $ticket->id])}} ">
+                              <a href="{{route('tickets.listTicket', ['id' => $ticket->id])}} ">
                                  <button type="button" class="btn btn-primary btn-lg" > {{__('Enregistrer')}}</button>
                               </a>
                            </div>

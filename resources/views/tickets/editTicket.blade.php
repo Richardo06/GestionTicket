@@ -14,7 +14,7 @@
                 <div class="alert alert-success">{{ session()->get('success')}}</div>
                  @endif
                   
-                   <form  class="mb-3" action="{{ route('tickets.updateTicket', $ticket->id)}}" method="POST">
+                   <form  class="mb-3" action="{{ route('tickets.updateTicket', ['id' => $ticket->id])}}" method="POST">
                       @csrf
                       @method('PUT')
                                <div class="row col-md-12">

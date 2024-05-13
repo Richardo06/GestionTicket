@@ -86,7 +86,7 @@
                                   <button type="submit" class="btn btn-primary" >
                                       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                       {{__('Enregister les modifications')}}</button>
-                                  <a href="{{ route('listeClient')}}"><button type="button" class="btn btn-danger" > {{__('Annuler')}}</button></a>
+                                  <a href="{{ route('client.listeClient')}}"><button type="button" class="btn btn-danger" > {{__('Annuler')}}</button></a>
                               </div>
 
                           </div>

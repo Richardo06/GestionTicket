@@ -58,9 +58,9 @@
                             <div class="mt-3 text-center">
                                 <a href="#" class="text-muted"><u>Mot de passe oublié ?</u></a>
                             </div>
-                            <div class="mt-3 text-center">
+                            <!-- <div class="mt-3 text-center">
                                 <a href=" {{ route('Auth.inscription')}} " class="text-muted"><u>s'inscrire !</u></a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

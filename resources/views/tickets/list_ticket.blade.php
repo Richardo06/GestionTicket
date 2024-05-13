@@ -18,10 +18,11 @@
                           {{ __('Aucun ticket disponible.') }}
                       </div>
                       @else
+                      
                       <table class="table table-striped table-hover">
                           <thead>
                               <tr>
-                                  <!-- <th scope="col">{{__()}}</th> -->
+                                  <th scope="col">{{__('ID')}}</th>
                                   <th scope="col">{{__('Direction/Service')}}</th>
                                   <th scope="col">{{__('Description des Pannes')}}</th>
                                   <th scope="col">{{__('Etat')}}</th>
@@ -37,20 +38,17 @@
                           <tbody>
                              @forelse ($tickets as $ticket)
                               <tr>
-                                  <!-- <td> {{ $ticket->id }} </td> -->
+                                  <td> {{ $ticket->id }} </td>
                                   <td> {{ $ticket->directionService }}</td>
                                   <td> {{ $ticket->description }} </td>
                                   <td> {{ $ticket->etat }} </td>
-                                  <!-- <td> {{ $ticket->batiment}}</td>
-                                  <td> {{ $ticket->numeroPort}} </td>
-                                  <td> {{ $ticket->solutionProposer }} </td> -->
                                   <td> {{ $ticket->created_at->format('Y-m-d H:i:s') }} </td>
                                   <td> {{ $ticket->added_by }} </td>
 
                                   <td>
                                       <a href="{{route('tickets.consult_ticket', ['id' => $ticket->id])}}"><button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button></a> 
+                                      <a href="{{route('tickets.editTicket', ['id' => $ticket->id])}}"><button type="button" class="btn btn-raised btn-rounded btn-raised-success" > <i class="nav-icon i-Close-Window font-weight-bold"></i> </button></a> 
                                       
-                                      <!-- <button type="button" class="btn btn-raised btn-rounded btn-raised-success"  data-toggle="modal" data-target="#deleteConfirmationModal"> <i class="nav-icon i-Close-Window font-weight-bold"></i></button>                                  -->
                                     </td>
                               </tr>
                                 @empty
@@ -60,40 +58,17 @@
                             @endforelse                      
                             </div>       
                           </tbody>
-                          <!-- Affichage de la pagination -->
-                      </table>
-                      {{ $tickets->links() }}  
+                          
+                      </table>  
+                                   
                       @endif
-                      <div class="d-flex justify-content-center">
-                      </div>
                       
-                      <!-- Delete  Modal -->
-                      <div wire:ignore.self class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h5 class="modal-title" id="deleteConfirmationModalLabel">{{__('Confirm Delete')}}</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                      </button>
-                                  </div>
-                                  <div class="modal-body">
-                                      <p>{{__('Are you sure you want to delete this client?')}}</p>
-                                  </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Annuler')}}</button>
-                                      <button type="button" class="btn btn-danger" wire:click="deleteClientConfirmed">{{__('Delete')}}</button>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                    
-                  </div>
+                </div>
                   <!-- End Default Table Example -->
               </div>
           </div>
       </div>
   </section>
 </div>
+
 @endsection

@@ -20,7 +20,7 @@ class AuthController extends Controller
         $user->password = $request->password;
         $user->save();
 
-        return redirect()->route('Auth.index')->with('success', 'Votre Compte a été crée. connectez-vous ');
+        return redirect()->route('usersettings')->with('success', 'Votre Compte a été crée. connectez-vous ');
         // dd($user);
     }
     
