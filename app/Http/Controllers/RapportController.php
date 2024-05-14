@@ -24,9 +24,9 @@ class RapportController extends Controller
      */
     public function ajouteRapport()
     {
-        $tickets = Ticket::pluck('id');
-
-        return view('rapport.ajout_rapport', compact('tickets'));
+        $tickets = Ticket::All();
+        // print_r($tickets);die;
+        return view('rapport.ajout_rapport', ['tickets'=>$tickets]);
     }
 
 /**
@@ -55,15 +55,8 @@ class RapportController extends Controller
 
         return view('rapport.list_rapport', compact('rapports', 'ticket'));
     }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
+    
+       /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)

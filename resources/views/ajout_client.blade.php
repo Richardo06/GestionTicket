@@ -9,7 +9,7 @@
   @if (session()->has('success'))
             <div class="alert alert-success">{{ session()->get('success')}}</div>
         @endif
-      <h4 class="card-title mb-3">{{ __('Ajoute des clients') }}</h4>
+      <h4 class="card-title mb-3">{{ __('Ajoute de Personnel') }}</h4>
       <div class="col-lg-12" >
       
                   <form class="mb-3" method="POST" action="{{ route('client.ajouteClient')}}">
@@ -31,7 +31,7 @@
                                   </div>
                                   <div class="col-md-4">
                                       <div class="mb-3">
-                                          <label for="prenom" class="form-label">{{__('Prénom')}}</label>
+                                          <label for="prenom" class="form-label">{{__('Prénom')}}<span class="text-danger">(*)</span></label>
                                           <input type="text" class="form-control" id="prenom" name="prenom" value="{{ old('prenom') }}">
                                           @error('prenom')
                                           <div class="alert alert-danger" role="alert">

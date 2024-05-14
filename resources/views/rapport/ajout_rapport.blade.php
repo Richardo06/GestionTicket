@@ -23,10 +23,13 @@
                             <label for="ticket_id" class="form-label">{{__('N° du ticket')}}<span class="text-danger">(*)</span></label>
                             <select class="form-control" name="ticket_id" id="ticket_id">
                             <option value="">Sélectionnez un ticket</option>
-                            @foreach($tickets as $id => $ticketId)
-                                <option value="{{ $id }}">{{ $ticketId }}</option>
+                            
+                            @foreach($tickets as $keytickets)
+                                
+                                <option value="{{ $keytickets->id }}">{{ $keytickets->id }}</option>
                             @endforeach
                             </select>
+                            
                             @error('ticket_id')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}

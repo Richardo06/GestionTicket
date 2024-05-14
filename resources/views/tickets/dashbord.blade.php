@@ -20,7 +20,7 @@
                         style="max-width: 18rem; height: 100px; width: 30%; margin-right: 18px;">
                         <div class="card-body">
                             <h1 class="card-number" style="color: white;">{{ $nombreClients }}</h1>
-                            <p class="card-text">Nombre des clients</p>
+                            <p class="card-text">Nombre des Personnels</p>
                         </div>
                     </div>
 

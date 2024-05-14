@@ -6,12 +6,12 @@
    
    <section class="section" >
 
-       <h4 class="card-title mb-3">{{ __('Liste des clients') }}</h4>
+       <h4 class="card-title mb-3">{{ __('Liste des Personnels') }}</h4>
        <div class="col-lg-12" style="margin-top: 5%;">
            <div class="card">
                <div class="card-body">
                    <button class="btn btn-primary btn-rounded mb-3" >
-                       <a href="{{ route('client.ajouteClient')}}" style="color: white;"><span>{{__('Ajouter un(e) client(e)')}}</span></a>
+                       <a href="{{ route('client.ajouteClient')}}" style="color: white;"><span>{{__('Ajouter un(e) Personnel(e)')}}</span></a>
                    </button>
                 <div>
                    @if (session()->has('success'))

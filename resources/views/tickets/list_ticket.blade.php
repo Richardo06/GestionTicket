@@ -26,9 +26,6 @@
                                   <th scope="col">{{__('Direction/Service')}}</th>
                                   <th scope="col">{{__('Description des Pannes')}}</th>
                                   <th scope="col">{{__('Etat')}}</th>
-                                  <!-- <th scope="col">{{__('Batiment')}}</th>
-                                  <th scope="col">{{__('Numéro de Porte')}}</th>
-                                  <th scope="col">{{__('Solution à proposer')}}</th> -->
                                   <th scope="col">{{__('Date creation')}}</th>
                                   <th scope="col">{{__('Utilisateur')}}</th>
 
@@ -46,9 +43,26 @@
                                   <td> {{ $ticket->added_by }} </td>
 
                                   <td>
-                                      <a href="{{route('tickets.consult_ticket', ['id' => $ticket->id])}}"><button type="button" class="btn btn-raised btn-rounded btn-raised-primary" ><i class="nav-icon i-Pen-2 font-weight-bold"></i></button></a> 
-                                      <a href="{{route('tickets.editTicket', ['id' => $ticket->id])}}"><button type="button" class="btn btn-raised btn-rounded btn-raised-success" > <i class="nav-icon i-Close-Window font-weight-bold"></i> </button></a> 
-                                      
+                                  <div class="button-container" style="display: flex; justify-content: flex-end;">
+                                        <a href="{{ route('tickets.consult_ticket', ['id' => $ticket->id]) }}">
+                                            <button type="button" class="btn btn-raised btn-rounded btn-raised-primary">
+                                                <i class="text-16 i-File-Copy-2"></i>
+                                            </button>
+                                        </a>
+                                        <a href="{{ route('tickets.editTicket', ['id' => $ticket->id]) }}">
+                                            <button type="button" class="btn btn-raised btn-rounded btn-raised-success">
+                                                <i class="nav-icon i-Pen-2 font-weight-bold"></i>
+                                            </button>
+                                        </a>
+                                        <form action="{{ route('tickets.DeleteTicket', $ticket->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-raised btn-rounded btn-raised-danger">
+                                                <i class="nav-icon i-Close-Window font-weight-bold"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                                                        
                                     </td>
                               </tr>
                                 @empty

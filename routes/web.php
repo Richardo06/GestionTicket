@@ -40,6 +40,7 @@ Route::get('/tickets/{id}/traiter', [TicketController::class, 'traiter_ticket'])
 Route::get('/ListeTicket', [TicketController::class, 'ListeTicket'])->name('tickets.listTicket');
 Route::get('/ListeTicket/{id}/edit', [TicketController::class, 'editTicket'])->name('tickets.editTicket');
 Route::put('/ListeTicket/{id}/update', [TicketController::class, 'updateTicket'])->name('tickets.updateTicket');
+Route::delete('/ListeTicket/{id}/delete', [TicketController::class, 'delete'])->name('tickets.DeleteTicket');
 
 /** Client**/
 Route::get('/ajout_client', [ClientController::class, 'ajouteClient'])->name('client.ajouteClient');

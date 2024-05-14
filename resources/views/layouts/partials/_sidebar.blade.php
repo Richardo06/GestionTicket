@@ -20,7 +20,7 @@
             <li class="nav-item" data-item="clients">
                 <a class="nav-item-hold " href="#">
                     <i class="nav-icon i-Business-ManWoman "></i>
-                    <span class="nav-text">{{__('Clients')}}</span>
+                    <span class="nav-text">{{__('Personnel')}}</span>
                     <span class="new-client-indicator"></span>
                 </a>
                 <div class="triangle"></div>
@@ -33,13 +33,6 @@
                 </a>
                 <div class="triangle"></div>
             </li>
-            <!-- <li class="nav-item" data-item="sessions">
-                <a class="nav-item-hold" href="#">
-                    <i class="nav-icon i-Gears"></i>
-                    <span class="nav-text">{{ __('Accée et securité')}}</span>
-                </a>
-                <div class="triangle"></div>
-            </li> -->
 
 
         </ul>
@@ -62,14 +55,7 @@
                     <span class="item-name">{{ __('Listes des Tickets') }}</span>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a href="">
-                    <i class="text-16 i-Calendar mr-8"></i>
-                    <span class="item-name">{{ __('Attributions des Tickets') }}</span>
-                </a>
-            </li> -->
-
-
+          
         </ul>
 
 
@@ -77,21 +63,16 @@
             <li class="nav-item">
                 <a class="" href="{{ route('client.ajouteClient')}}">
                     <i class="text-16 i-Business-ManWoman mr-8"></i>
-                    <span class="item-name">{{ __('Ajoute clients') }}</span>
+                    <span class="item-name">{{ __('Ajoute Personnel') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="" href="{{ route('client.listeClient')}}">
                     <i class="text-16 i-Building mr-8"></i>
-                    <span class="item-name">{{ __('Listes des clients') }}</span>
+                    <span class="item-name">{{ __('Listes des Personnels') }}</span>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a href="">
-                    <i class="text-16 i-Chrome mr-8"></i>
-                    <span class="item-name">{{ __('Technologie') }}</span>
-                </a>
-            </li>  -->
+           
         </ul>
 
         <ul class="childNav" data-parent="facture">

@@ -88,7 +88,7 @@
                                    </div>
                                    <div class="col-md-4">
                                        <div class="mb-3">
-                                           <label for="description" class="form-label">{{__('Description des Pannes')}}</label>
+                                           <label for="description" class="form-label">{{__('Description des Pannes')}}<span class="text-danger">(*)</span></label>
                                            <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
                                            @error('description')
                                            <div class="alert alert-danger" role="alert">
@@ -102,7 +102,7 @@
 
                                    <div class="col-md-4">
                                         <div class="mb-3">
-                                           <label for="batiment" class="form-label">{{__('Batiment')}}</label>
+                                           <label for="batiment" class="form-label">{{__('Batiment')}}<span class="text-danger">(*)</span></label>
                                            <select class="form-control" id="batiment" name="batiment">
                                         <option value="" disabled selected>Choisissez un bâtiment</option>
                                         <option value="A" {{ old('batiment') == 'A' ? 'selected' : '' }}>A</option>

@@ -36,7 +36,7 @@
                           <tbody>
                               @foreach($rapports as $rapport)
                               <tr>
-                                  <td> {{ $ticket[$rapport->ticket_id ]}}</td>
+                                  <td> {{ $rapport->ticket_id }}</td>
                                   <td> {{ $rapport->action_realise }}</td>
                                   <td> {{ $rapport->resultat_obtenu }} </td>
                                   <td> {{ $rapport->commentaire_supplementaire }} </td>

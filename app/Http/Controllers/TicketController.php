@@ -223,4 +223,13 @@ class TicketController extends Controller
 
     return view('tickets.traiter_ticket', compact('ticket'));
 }
+public function delete(string $id)
+    {
+        $ticket = Ticket::findOrFail($id);
+
+        $ticket->delete();
+
+        return redirect()->route('tickets.listTicket')->with('success', 'Suppression réussit...');
+
+    }
 }
